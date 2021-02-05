@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^_old$
+^\.travis\.yml$
+^codecov\.yml$

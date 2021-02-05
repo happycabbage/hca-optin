@@ -1,0 +1,25 @@
+Package: projinit
+Title: Templates and Tools
+Version: 0.0.5
+Authors@R: 
+    person(given = "HAPPY",
+           family = "CABBAGE",
+           role = c("aut", "cre"),
+           email = "no-reply@happycabbage.io")
+Description: R package containing internal project templates and 
+ additional tools useful for initializing with tools needed for project dev.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    apitools
+Depends: 
+    R (>= 4.0)
+Suggests: 
+    covr,
+    testthat
+Remotes:
+    happycabbage/apitools
+URL: https://github.com/happycabbage/projinit
+BugReports: https://github.com/happycabbage/projinit/issues
