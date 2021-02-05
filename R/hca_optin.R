@@ -5,6 +5,6 @@
 #' @importFrom jsonlite toJSON
 #'
 #' @export
-hca_optin <- function(...) {
+hca <- function(...) {
   return( jsonlite::toJSON(list(...)) )
 }
