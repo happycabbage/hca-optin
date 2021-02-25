@@ -25,7 +25,7 @@ hca <- function(...) {
   status <- httr::status_code(resp)
   ts_gmt <- resp$date
 
-  if (r_status == "201") {
+  if (status == "201") {
     sid <- resp$headers$`x-ocpu-session`
     dat <- jsonlite::fromJSON(rawToChar(resp$content))
     loc <- stringr::str_glue("/ocpu/tmp/{sid}/files/{dat}")
