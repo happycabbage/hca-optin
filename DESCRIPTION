@@ -1,6 +1,6 @@
 Package: optin
 Title: Opt-In API
-Version: 0.0.5
+Version: 0.1.1
 Authors@R: 
     person(given = "HAPPY",
            family = "CABBAGE",
@@ -12,14 +12,16 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Imports: 
-    apitools,
-    jsonlite
+    jsonlite,
+    stringr,
+    lubridate,
+    DBI,
+    data.table,
+    hcaconnect,
+    httr
 Depends: 
     R (>= 4.0)
-Suggests: 
-    covr,
-    testthat
 Remotes:
-    happycabbage/apitools
+    happycabbage/hcaconnect
 URL: https://github.com/happycabbage/hca-optin
 BugReports: https://github.com/happycabbage/hca-optin/issues
