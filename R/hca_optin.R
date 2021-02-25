@@ -6,39 +6,42 @@
 #' @importFrom httr POST status_code
 #' @importFrom stringr str_glue
 #' @importFrom data.table data.table
-#' @importFrom pipelinetools dbconn dbdisconn
+#' @importFrom hcaconnect dbconn dbdisconn
 #' @importFrom DBI dbAppendTable
 #' @importFrom lubridate now
 #'
 #' @name hca
 NULL
 
+
+#' @describeIn hca external form url
+postData <- function(...) {
+  r <- httr::POST(
+    "localhost/ocpu/user/api/library/optin/R/store_session/json",
+    encode = "json",
+    body = list(data = data.table::data.table(...))
+  )
+  return(r)
+}
+
+
 #' @describeIn hca external form url
 #' @export
 hca <- function(...) {
+  r <- postData(...)
 
-  resp <- httr::POST(
-    url = "localhost/ocpu/user/api/library/optin/R/store_session/json",
-    encode = "json",
-    body = list(ll = list(...)))
-
-  status <- httr::status_code(resp)
-  ts_gmt <- resp$date
-
-  if (status == "201") {
-    sid <- resp$headers$`x-ocpu-session`
-    dat <- jsonlite::fromJSON(rawToChar(resp$content))
-    loc <- stringr::str_glue("/ocpu/tmp/{sid}/files/{dat}")
+  if (r$status == "201") {
+    sid <- r$headers$`x-ocpu-session`
+    loc <- stringr::str_glue("/ocpu/tmp/{sid}/files/formdata.fst")
   } else {
     sid <- NA_character_
-    dat <- NA_character_
-    loc <- NA_character_
+    loc <- httr::content(r, as = "text")
   }
   row <- data.table::data.table(
-    "status" = status,
-    "ts_gmt" = ts_gmt,
+    "status" = r$status,
+    "ts_gmt" = r$date,
     "session_id" = sid,
-    "file_name" = dat,
+    "file_name" = "formdata.fst",
     "get_path" = loc
   )
 
@@ -48,7 +51,7 @@ hca <- function(...) {
   tryCatch({
     res <- DBI::dbAppendTable(cn, "optinsessions", row)
     stopifnot(res == 1)
-  }, error = function(c) {f
+  }, error = function(c) {
     warning(c$message, call. = FALSE)
     return(invisible(FALSE))
   })
@@ -56,8 +59,16 @@ hca <- function(...) {
 }
 
 #' @describeIn hca internal session url
-store_session <- function(ll) {
-  fnam <- paste0("formdata_", as.integer(lubridate::now()), ".json")
-  jsonlite::write_json(ll, fnam)
-  return(fnam)
+store_session <- function(data) {
+  
+  fst::write_fst(data, paste0(tempdir(), "formdata.fst"))
+  ##
+  ## For now do nothing with the form data
+  ##
+  invisible(TRUE)
 }
+
+# ll <- jsonlite::fromJSON('{"name":["sadfgasdf"],"Phone":["12341245"],"Do-you-consent":["Yes"],"org":["goldflora"]}')
+
+
+

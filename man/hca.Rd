@@ -2,12 +2,15 @@
 % Please edit documentation in R/hca_optin.R
 \name{hca}
 \alias{hca}
+\alias{postData}
 \alias{store_session}
 \title{Receive opt-in data}
 \usage{
+postData(...)
+
 hca(...)
 
-store_session(ll)
+store_session(data)
 }
 \arguments{
 \item{...}{Form data}
@@ -17,6 +20,8 @@ Receive opt-in data
 }
 \section{Functions}{
 \itemize{
+\item \code{postData}: external form url
+
 \item \code{hca}: external form url
 
 \item \code{store_session}: internal session url
