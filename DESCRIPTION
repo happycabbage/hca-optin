@@ -20,7 +20,7 @@ Imports:
     hcaconnect,
     httr
 Depends: 
-    R (>= 4.0)
+    R (>= 3.6)
 Remotes:
     happycabbage/hcaconnect
 URL: https://github.com/happycabbage/hca-optin
