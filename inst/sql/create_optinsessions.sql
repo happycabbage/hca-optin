@@ -9,6 +9,16 @@ CREATE TABLE IF NOT EXISTS optinsessions (
 );
 
 
+CREATE TABLE IF NOT EXISTS optinsessions_testing (
+  status INT NOT NULL,
+  ts_gmt TIMESTAMP NOT NULL,
+  session_id VARCHAR ( 255 ) UNIQUE,
+  file_name VARCHAR ( 50 ) UNIQUE,
+  get_path VARCHAR ( 255 ) UNIQUE
+);
+
+
+
 
 
 

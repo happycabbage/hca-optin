@@ -2,17 +2,24 @@
 % Please edit documentation in R/hca_optin.R
 \name{hca}
 \alias{hca}
-\alias{postData}
+\alias{..logRow}
+\alias{..postData}
 \alias{store_session}
 \title{Receive opt-in data}
 \usage{
-postData(...)
+..logRow(row, is_test = TRUE)
+
+..postData(..., is_test = FALSE)
 
 hca(...)
 
 store_session(data)
 }
 \arguments{
+\item{row}{Form data}
+
+\item{is_test}{internal}
+
 \item{...}{Form data}
 }
 \description{
@@ -20,7 +27,9 @@ Receive opt-in data
 }
 \section{Functions}{
 \itemize{
-\item \code{postData}: external form url
+\item \code{..logRow}: external form url
+
+\item \code{..postData}: external form url
 
 \item \code{hca}: external form url
 
