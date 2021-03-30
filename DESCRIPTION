@@ -16,12 +16,12 @@ Imports:
     stringr,
     lubridate,
     DBI,
+    RPostgres,
     data.table,
-    hcaconnect,
     httr
 Depends: 
-    R (>= 4.0)
-Remotes:
-    happycabbage/hcaconnect
+    R (>= 3.6)
 URL: https://github.com/happycabbage/hca-optin
 BugReports: https://github.com/happycabbage/hca-optin/issues
+Suggests: 
+    testthat
