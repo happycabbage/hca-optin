@@ -36,7 +36,7 @@ NULL
     print(data.table::data.table(...))
   
   r <- httr::POST(
-    url = "localhost/ocpu/user/api/library/optin/R/store_session/json",
+    url = "localhost/ocpu/library/optin/R/store_session/json",
     encode = "json",
     body = list("data" = data.table::data.table(...))
   )
